@@ -1,4 +1,5 @@
 .DS_Store
+/VSCode-*/
 
 # Arquivos gerados durante o desenvolvimento e a compilação.
 /.env
