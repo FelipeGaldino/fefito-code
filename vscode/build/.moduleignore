@@ -221,9 +221,7 @@ zone.js/dist/**
 @xterm/xterm-addon-*/out/**
 @xterm/xterm-addon-*/out-test/**
 
-# @github/copilot - strip unneeded binaries and files
-# Agent Host uses the runtime bundled with @github/copilot-sdk.
-@github/copilot/**
+# O agente integrado precisa de @github/copilot/sdk no pacote final.
 
 # Standalone Copilot CLI platform packages are not product dependencies.
 @github/copilot-darwin-arm64/**

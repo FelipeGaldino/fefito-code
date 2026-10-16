@@ -463,9 +463,6 @@
 			}
 		}
 	},
-	"dependencies": {
-		"chroma-js": "^3.2.0"
-	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.14",
 		"@commitlint/config-conventional": "^21.2.2",
