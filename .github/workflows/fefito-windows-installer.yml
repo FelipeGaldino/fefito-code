@@ -1,0 +1,65 @@
+name: Instalador Windows do Fefito
+
+# Gera o FefitoSetup.exe num Windows do GitHub e publica para download em
+# https://github.com/FelipeGaldino/fefito-code/releases/tag/windows-teste
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fefito-windows-installer.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fefito-windows-installer
+  cancel-in-progress: true
+
+jobs:
+  installer:
+    runs-on: windows-2022
+    timeout-minutes: 300
+    steps:
+      - name: Aceitar caminhos longos no Git
+        run: git config --global core.longpaths true
+
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: vscode/.nvmrc
+          cache: npm
+          cache-dependency-path: vscode/package-lock.json
+
+      - name: Preparar Python para a compilação
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Criar instalador Windows x64
+        shell: pwsh
+        run: ./vscode/scripts/build-windows-installer.ps1
+
+      - name: Guardar instalador na execução
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fefito-Windows-x64
+          path: vscode/.build/win32-x64/user-setup/FefitoSetup.exe
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publicar instalador para download
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = 'windows-teste'
+          gh release delete $tag --yes --cleanup-tag 2>$null
+          gh release create $tag vscode/.build/win32-x64/user-setup/FefitoSetup.exe `
+            --target $env:GITHUB_SHA `
+            --prerelease `
+            --title 'Fefito para Windows (teste)' `
+            --notes "Instalador de teste gerado automaticamente a partir do commit $env:GITHUB_SHA. Não é assinado digitalmente: o Windows pode pedir confirmação antes de instalar."

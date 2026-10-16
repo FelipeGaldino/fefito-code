@@ -38,7 +38,9 @@ npm run compile    # compila ( incremental é rápido )
 
 No Mac com chip Apple, execute `python3 vscode/scripts/build-macos-installer.py` depois de instalar as dependências em `vscode/`. O resultado fica em `vscode/instaladores/Fefito-macOS-arm64.dmg` no próprio computador. O GitHub guarda o código e o script para gerar o instalador; o arquivo `.dmg` permanece local.
 
-No Windows, baixe o código deste repositório com Git e execute `./scripts/build-windows-installer.ps1` dentro de `vscode/`. O resultado é `vscode/.build/win32-x64/user-setup/FefitoSetup.exe`. Veja [as instruções para Windows](vscode/FEFITO-WINDOWS.md). Os instaladores de teste não são assinados digitalmente e precisam de internet na primeira abertura para preparar Python, `uv` e a IA escolhida.
+O instalador do Windows é gerado na nuvem pelo GitHub Actions ([Instalador Windows do Fefito](.github/workflows/fefito-windows-installer.yml)). Para gerar uma versão nova, abra a aba **Actions**, escolha o fluxo e clique em **Run workflow**. Em cerca de uma hora, o `FefitoSetup.exe` fica disponível em [Releases → windows-teste](https://github.com/FelipeGaldino/fefito-code/releases/tag/windows-teste).
+
+Também é possível compilar direto num computador Windows: baixe o código deste repositório com Git e execute `./scripts/build-windows-installer.ps1` dentro de `vscode/`. O resultado é `vscode/.build/win32-x64/user-setup/FefitoSetup.exe`. Veja [as instruções para Windows](vscode/FEFITO-WINDOWS.md). Os instaladores de teste não são assinados digitalmente e precisam de internet na primeira abertura para preparar Python, `uv` e a IA escolhida.
 
 Lint dos arquivos alterados:
 
