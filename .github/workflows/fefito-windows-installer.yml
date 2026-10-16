@@ -1,0 +1,39 @@
+name: Instalador Windows do Fefito
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  installer:
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 240
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: vscode/.nvmrc
+          cache: npm
+          cache-dependency-path: vscode/package-lock.json
+
+      - name: Preparar Python para a compilação
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Criar instalador Windows x64
+        shell: pwsh
+        run: ./vscode/scripts/build-windows-installer.ps1
+
+      - name: Guardar instalador para download
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fefito-Windows-x64
+          path: vscode/.build/win32-x64/user-setup/FefitoSetup.exe
+          if-no-files-found: error
+          retention-days: 14

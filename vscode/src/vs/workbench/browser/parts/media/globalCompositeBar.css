@@ -1,0 +1,101 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-workbench .monaco-action-bar .action-label.has-avatar::before {
+	display: none;
+}
+
+.monaco-workbench .monaco-action-bar .action-label .accounts-avatar {
+	width: 1em;
+	height: 1em;
+	object-fit: cover;
+	border-radius: var(--vscode-cornerRadius-circle);
+}
+.monaco-workbench .activitybar .fefito-claude-account-icon::before,
+.monaco-workbench .activitybar .fefito-codex-account-icon::before {
+	content: '';
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.monaco-workbench .activitybar .fefito-claude-account-icon::before {
+	background-image: url('./fefito-claude.svg');
+}
+
+.monaco-workbench .activitybar .fefito-codex-account-icon::before {
+	background-image: url('./fefito-codex.svg');
+}
+
+.monaco-workbench .activitybar .fefito-agent-selected .action-label {
+	box-shadow: inset 3px 0 var(--vscode-focusBorder);
+}
+
+.monaco-workbench .fefito-account-card {
+	width: 250px;
+	padding: 8px;
+	border-radius: 6px;
+	background: var(--vscode-editorHoverWidget-background);
+	color: var(--vscode-editorHoverWidget-foreground);
+	font-size: 12px;
+	text-align: left;
+	white-space: normal;
+}
+
+.monaco-workbench .fefito-account-card strong {
+	display: block;
+	margin-bottom: 12px;
+	font-size: 13px;
+}
+
+.monaco-workbench .fefito-account-card-status {
+	margin: 0 0 12px;
+	color: var(--vscode-descriptionForeground);
+}
+
+.monaco-workbench .fefito-account-card-details {
+	display: grid;
+	grid-template-columns: 90px 1fr;
+	gap: 8px;
+	line-height: 1.4;
+}
+
+.monaco-workbench .fefito-account-card-details span:nth-child(odd) {
+	color: var(--vscode-descriptionForeground);
+}
+
+.monaco-workbench .fefito-account-card-link {
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--vscode-textLink-foreground);
+	text-align: left;
+	cursor: pointer;
+}
+
+.monaco-workbench .fefito-account-card-hint {
+	margin: 12px 0 0;
+	color: var(--vscode-descriptionForeground);
+	line-height: 1.4;
+}
+
+.monaco-workbench .fefito-account-card-button {
+	width: 100%;
+	margin-top: 14px;
+	padding: 7px 10px;
+	border: 0;
+	border-radius: 4px;
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	cursor: pointer;
+}
+
+.monaco-workbench .fefito-account-login-link {
+	display: block;
+	margin-top: 10px;
+}

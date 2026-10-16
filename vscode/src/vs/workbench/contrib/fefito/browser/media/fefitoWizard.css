@@ -1,0 +1,307 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Fefito. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.fefito-wizard {
+	outline: none;
+	overflow: hidden auto;
+	position: fixed;
+	inset: 0;
+	z-index: 10000;
+	background: var(--vscode-editor-background);
+}
+
+.fefito-wizard[hidden] {
+	display: none;
+}
+
+.fefito-wizard-content {
+	max-width: 680px;
+	margin: 0 auto;
+	padding: 40px 32px 60px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	box-sizing: border-box;
+}
+
+.fefito-wizard-close {
+	align-self: flex-end;
+	border: 1px solid var(--vscode-widget-border);
+	border-radius: 8px;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	padding: 7px 14px;
+	cursor: pointer;
+}
+
+/* Stepper */
+
+.fefito-stepper {
+	display: flex;
+	gap: 6px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.fefito-stepper-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 12px;
+	border-radius: 999px;
+	color: var(--vscode-descriptionForeground);
+	font-size: 12px;
+}
+
+.fefito-stepper-item.current {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.fefito-stepper-item.done .fefito-stepper-dot::after {
+	content: '\2713';
+}
+
+.fefito-stepper-item.current .fefito-stepper-dot::after {
+	content: '';
+}
+
+.fefito-stepper-item.upcoming .fefito-stepper-dot::after {
+	content: '';
+}
+
+.fefito-stepper-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--vscode-descriptionForeground);
+}
+
+.fefito-stepper-item.current .fefito-stepper-dot {
+	background: var(--vscode-button-foreground);
+}
+
+/* Copy */
+
+.fefito-title {
+	font-size: 30px;
+	font-weight: 600;
+	color: var(--vscode-foreground);
+	text-align: center;
+	line-height: 1.25;
+}
+
+.fefito-subtitle {
+	font-size: 14px;
+	color: var(--vscode-descriptionForeground);
+	text-align: center;
+	max-width: 520px;
+	margin: 0 auto;
+	line-height: 1.6;
+}
+
+/* Cards */
+
+.fefito-cards {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.fefito-cards.selectable {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.fefito-cards.selectable .fefito-card {
+	flex: 1 1 200px;
+	cursor: pointer;
+	border: 1px solid var(--vscode-widget-border, transparent);
+	border-radius: 10px;
+	padding: 18px;
+}
+
+.fefito-cards.selectable .fefito-card.selected {
+	border-color: var(--vscode-button-background);
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.fefito-cards.selectable .fefito-card.selected .codicon {
+	color: var(--vscode-button-foreground);
+}
+
+.fefito-card {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	align-items: flex-start;
+	padding: 16px;
+	border-radius: 10px;
+	background: var(--vscode-editorWidget-background, var(--vscode-editor-background));
+	border: 1px solid var(--vscode-widget-border, transparent);
+}
+
+.fefito-card .codicon {
+	font-size: 22px;
+	color: var(--vscode-focusBorder);
+}
+
+.fefito-card-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: inherit;
+}
+
+.fefito-card-text {
+	font-size: 12px;
+	color: var(--vscode-descriptionForeground);
+	line-height: 1.5;
+}
+
+.fefito-card.selected .fefito-card-text {
+	color: inherit;
+	opacity: 0.9;
+}
+
+/* Folder picker */
+
+.fefito-folder-picker {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: center;
+}
+
+.fefito-folder-path {
+	font-family: var(--vscode-editor-font-family, monospace);
+	font-size: 12px;
+	color: var(--vscode-textLink-foreground);
+	padding: 8px 12px;
+	border-radius: 8px;
+	background: var(--vscode-textCodeBlock-background, var(--vscode-editorWidget-background, transparent));
+	word-break: break-all;
+}
+
+/* Buttons */
+
+.fefito-nav {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	margin-top: 8px;
+}
+
+.fefito-btn {
+	border: none;
+	border-radius: 8px;
+	padding: 10px 22px;
+	font-size: 13px;
+	cursor: pointer;
+	transition: opacity 100ms ease;
+}
+
+.fefito-btn:hover {
+	opacity: 0.9;
+}
+
+.fefito-btn.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.fefito-btn.primary.big {
+	padding: 16px 34px;
+	font-size: 15px;
+	font-weight: 600;
+	border-radius: 10px;
+}
+
+.fefito-btn.primary:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.fefito-btn.secondary {
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+}
+
+/* Tasks */
+
+.fefito-tasks {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 16px;
+	border-radius: 10px;
+	background: var(--vscode-editorWidget-background, transparent);
+	border: 1px solid var(--vscode-widget-border, transparent);
+}
+
+.fefito-task {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 13px;
+	color: var(--vscode-foreground);
+}
+
+.fefito-task .codicon {
+	font-size: 16px;
+}
+
+.fefito-task.ok .codicon {
+	color: var(--vscode-testing-iconPassed, var(--vscode-charts-green, #3fb950));
+}
+
+.fefito-task.error .codicon {
+	color: var(--vscode-testing-iconFailed, var(--vscode-charts-red, #f85149));
+}
+
+.fefito-task.running .codicon {
+	color: var(--vscode-charts-blue, #4493f8);
+	animation: fefito-spin 1.2s linear infinite;
+}
+
+.fefito-task.pending .codicon {
+	color: var(--vscode-descriptionForeground);
+}
+
+.fefito-task-label {
+	color: var(--vscode-foreground);
+}
+
+.fefito-task .fefito-task-label {
+	color: inherit;
+}
+
+@keyframes fefito-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Login + summary */
+
+.fefito-summary {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.fefito-summary-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.fefito-summary-item .codicon {
+	color: var(--vscode-testing-iconPassed, var(--vscode-charts-green, #3fb950));
+}
