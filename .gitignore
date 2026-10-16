@@ -6,6 +6,12 @@ __pycache__/
 # fefito: the VS Code fork is its own git repository
 vscode/
 
+# Aplicativos compilados localmente (Mac, Windows e Linux)
+/VSCode-*/
+
+# Arquivos temporários do macOS
+.DS_Store
+
 # C extensions
 *.so
 

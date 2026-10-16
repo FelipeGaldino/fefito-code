@@ -1,6 +1,6 @@
 # Fefito Code — Arquitetura
 
-Documento vivo. Última atualização: Milestone 1 (Setup Wizard).
+Documento vivo. Última atualização: perfil e memória dos agentes.
 
 ## 1. Visão geral
 
@@ -88,6 +88,10 @@ Cada comando é executado com **marcadores** (`wrapWithMarkers`) no terminal: o 
 | `fefito.projectsFolder` | URI da pasta de projetos escolhida |
 | `fefito.agents` | JSON `["claude","codex"]` |
 | `fefito.openChatOnStart` | flag "abrir chat central ao abrir o workspace" (consumida 1x) |
+| `fefito.agentProfileInstalled` | `true` após instalar instruções, memória e skills; permite migração única para instalações existentes |
+| `fefito.agentProfileVersion` | versão do perfil instalado; aciona a atualização das orientações após uma mudança |
+
+O perfil dos agentes é instalado em arquivos do usuário ao finalizar o wizard, antes de gravar `fefito.setupComplete`. Ao abrir uma instalação já configurada, o `FefitoSetupRunnerContribution` instala o perfil uma vez caso a nova chave ainda não exista. Veja [AGENT_PROFILE.md](AGENT_PROFILE.md).
 
 ## 5. Comandos registrados
 
@@ -109,6 +113,9 @@ Cada comando é executado com **marcadores** (`wrapWithMarkers`) no terminal: o 
 ## 7. Próximos marcos (design resumido)
 
 - **M2 Layout chat-first:** padrões de layout iniciais customizados (chat central persistente — provavelmente `IWorkbenchLayoutService` + defaults de `workbench.*`), explorer fino, renomear UI para leigos.
+- **Lateral simples já implementada:** na primeira abertura, o Fefito oculta Outline e Timeline e fixa apenas Arquivos e Busca na barra lateral. Depuração, Git e Extensões continuam disponíveis internamente, mas sem atalhos principais. `Dracula Theme` e `Material Icon Theme` são extensões incluídas no fork e defaults de configuração; preferências explícitas do usuário continuam tendo prioridade. O tema Galaxy anterior permanece disponível como alternativa.
+- **Conta e configurações:** a barra inferior mostra a IA ativa no lugar do avatar genérico. O menu da conta abre detalhes, uso e login no terminal da CLI correspondente. A engrenagem concentra pasta de projetos, troca de IA e aparência. O Fefito não calcula valores de cobrança sem uma fonte confiável do provedor.
+- **Personalização pelo chat:** a skill `personalizar-fefito` chama o controle Python em `~/.fefito/control.py`. Ele grava um pedido local com ID em `~/.fefito/command.json`; a contribuição do editor verifica esse arquivo e executa apenas ações permitidas de tema, ícones, pasta, agente, conta e uso. A resposta aparece em `~/.fefito/response.json`. A troca de tema usa configuração de usuário; a troca de pasta atualiza a pasta padrão e reutiliza a janela.
 - **M3 Execução:** comando `fefito.run` — detecta script principal (ou pergunta ao agente), garante venv do projeto (`uv venv` + `uv pip install -r requirements.txt` se existir), roda num terminal lateral com foco automático.
 - **M4 Empacotamento:** build Windows (NSIS do VS Code) bundling `uv` + Python 3.12 standalone + CLIs, eliminação do passo de download no primeiro uso.
 - **M5 Modo leigo:** esconder menus avançados, PT-BR como idioma base do produto.
