@@ -1,0 +1,13 @@
+name: Diagnóstico temporário do Fefito
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GitHub Actions iniciou normalmente"
