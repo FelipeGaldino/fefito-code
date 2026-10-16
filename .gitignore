@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# fefito: the VS Code fork is its own git repository
+vscode/
+
 # C extensions
 *.so
 
