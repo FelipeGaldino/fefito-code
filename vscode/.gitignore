@@ -6,6 +6,8 @@ Thumbs.db
 node_modules
 .tmp/
 .build/
+/instaladores/
+__pycache__/
 /extensionsCG/
 .vscode/extensions/**/out/
 extensions/**/dist/

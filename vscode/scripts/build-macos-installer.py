@@ -48,7 +48,7 @@ def main() -> None:
     if not app.is_dir():
         raise SystemExit(f"A compilação não criou o aplicativo esperado: {app}")
 
-    destination = EDITOR / ".build" / "installers"
+    destination = EDITOR / "instaladores"
     destination.mkdir(parents=True, exist_ok=True)
     dmg = destination / f"Fefito-macOS-{arch}.dmg"
 

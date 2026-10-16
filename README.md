@@ -36,7 +36,7 @@ npm run compile    # compila ( incremental é rápido )
 
 ## Instaladores
 
-No Mac com chip Apple, execute `python3 vscode/scripts/build-macos-installer.py` depois de instalar as dependências em `vscode/`. O resultado é `vscode/.build/installers/Fefito-macOS-arm64.dmg`. O arquivo pronto para teste fica também nas [versões para download](https://github.com/FelipeGaldino/fefito-code/releases).
+No Mac com chip Apple, execute `python3 vscode/scripts/build-macos-installer.py` depois de instalar as dependências em `vscode/`. O resultado fica em `vscode/instaladores/Fefito-macOS-arm64.dmg` no próprio computador. O GitHub guarda o código e o script para gerar o instalador; o arquivo `.dmg` permanece local.
 
 No Windows, baixe o código deste repositório com Git e execute `./scripts/build-windows-installer.ps1` dentro de `vscode/`. O resultado é `vscode/.build/win32-x64/user-setup/FefitoSetup.exe`. Veja [as instruções para Windows](vscode/FEFITO-WINDOWS.md). Os instaladores de teste não são assinados digitalmente e precisam de internet na primeira abertura para preparar Python, `uv` e a IA escolhida.
 
