@@ -83,7 +83,8 @@ const testBundlePlugin: esbuild.Plugin = {
 			let files = await glob(nodeExtHostTestGlobs, { cwd: REPO_ROOT, posix: true, ignore: ['src/extension/completions-core/**/*'] });
 			files = files.map(f => path.posix.relative('src', f));
 			if (files.length === 0) {
-				throw new Error('No extension tests found');
+				// fefito: the published copy leaves out the tests, so emit an empty test bundle
+				return { contents: '' };
 			}
 			return {
 				contents: files
@@ -113,7 +114,8 @@ const sanityTestBundlePlugin: esbuild.Plugin = {
 			let files = await glob(nodeExtHostSanityTestGlobs, { cwd: REPO_ROOT, posix: true, ignore: ['src/extension/completions-core/**/*'] });
 			files = files.map(f => path.posix.relative('src', f));
 			if (files.length === 0) {
-				throw new Error('No extension tests found');
+				// fefito: the published copy leaves out the tests, so emit an empty test bundle
+				return { contents: '' };
 			}
 			return {
 				contents: files
