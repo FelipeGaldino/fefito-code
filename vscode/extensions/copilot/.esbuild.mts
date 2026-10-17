@@ -382,8 +382,8 @@ async function main() {
 		rebuild();
 	} else {
 		// fefito: the published copy leaves out the simulation test sources
-		const hasEntryPoints = (options: { entryPoints: { in: string }[] }) => options.entryPoints.every(entry => fs.existsSync(path.join(import.meta.dirname, entry.in)));
-		const simulationBuildOptions = [nodeSimulationBuildOptions, nodeSimulationWorkbenchUIBuildOptions, nodeExtHostSimulationTestOptions].filter(hasEntryPoints);
+		const hasSimulationSources = fs.existsSync(path.join(import.meta.dirname, 'test', 'simulation'));
+		const simulationBuildOptions = hasSimulationSources ? [nodeSimulationBuildOptions, nodeSimulationWorkbenchUIBuildOptions, nodeExtHostSimulationTestOptions] : [];
 		await Promise.all([
 			esbuild.build(nodeExtHostBuildOptions),
 			esbuild.build(webExtHostBuildOptions),
