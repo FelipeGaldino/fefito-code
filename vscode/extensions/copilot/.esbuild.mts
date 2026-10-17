@@ -381,12 +381,13 @@ async function main() {
 		});
 		rebuild();
 	} else {
+		// fefito: the published copy leaves out the simulation test sources
+		const hasEntryPoints = (options: { entryPoints: { in: string }[] }) => options.entryPoints.every(entry => fs.existsSync(path.join(import.meta.dirname, entry.in)));
+		const simulationBuildOptions = [nodeSimulationBuildOptions, nodeSimulationWorkbenchUIBuildOptions, nodeExtHostSimulationTestOptions].filter(hasEntryPoints);
 		await Promise.all([
 			esbuild.build(nodeExtHostBuildOptions),
 			esbuild.build(webExtHostBuildOptions),
-			esbuild.build(nodeSimulationBuildOptions),
-			esbuild.build(nodeSimulationWorkbenchUIBuildOptions),
-			esbuild.build(nodeExtHostSimulationTestOptions),
+			...simulationBuildOptions.map(options => esbuild.build(options)),
 			esbuild.build(typeScriptServerPluginBuildOptions),
 			esbuild.build(webviewBuildOptions),
 		]);
