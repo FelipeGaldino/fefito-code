@@ -101,8 +101,9 @@ function buildWin32Setup(arch: string, target: string): task.CallbackTask {
 			AppId: { 'x64': x64AppId, 'arm64': arm64AppId }[arch],
 			IncompatibleTargetAppId: { 'x64': product.win32x64AppId, 'arm64': product.win32arm64AppId }[arch],
 			AppUserId: product.win32AppUserModelId,
-			ArchitecturesAllowed: { 'x64': 'x64', 'arm64': 'arm64' }[arch],
-			ArchitecturesInstallIn64BitMode: { 'x64': 'x64', 'arm64': 'arm64' }[arch],
+			// fefito: x64compatible also lets the x64 setup install on Windows on ARM, which runs it emulated
+			ArchitecturesAllowed: { 'x64': 'x64compatible', 'arm64': 'arm64' }[arch],
+			ArchitecturesInstallIn64BitMode: { 'x64': 'x64compatible', 'arm64': 'arm64' }[arch],
 			SourceDir: sourcePath,
 			RepoDir: repoPath,
 			OutputDir: outputPath,
