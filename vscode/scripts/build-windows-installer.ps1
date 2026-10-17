@@ -26,6 +26,12 @@ try {
 	$env:FOUNDRY_LOCAL_SKIP_INSTALL = '1'
 	$env:npm_config_foreground_scripts = 'true'
 
+	# No repositório publicado, vscode/ fica dentro do Git principal; o build precisa do commit para o instalador.
+	if (-not $env:BUILD_SOURCEVERSION) {
+		$commit = git -C $repo rev-parse HEAD 2>$null
+		if ($LASTEXITCODE -eq 0) { $env:BUILD_SOURCEVERSION = "$commit".Trim() }
+	}
+
 	if (-not $SkipInstall) {
 		Invoke-Step 'Instalar dependências' @('ci')
 	}
